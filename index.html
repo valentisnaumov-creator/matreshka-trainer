@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Тренажёр • Матрёшка RP</title>
+<style>
+:root{--bg:#0c1117;--card:#171f2a;--line:#293443;--text:#f4f7fb;--muted:#94abc4;--orange:#ff7b39;--blue:#42a5ff;--green:#35dc8a;--red:#ff626c}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.55 system-ui,-apple-system,Segoe UI,sans-serif}.wrap{max-width:1000px;margin:auto;padding:28px 18px 70px}
+.hero,.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:26px;margin-bottom:20px}.eyebrow{color:var(--orange);font-weight:900;letter-spacing:.06em}.hero h1{font-size:34px;margin:8px 0}.muted{color:var(--muted)}
+.topic{display:flex;align-items:center;gap:18px}.num{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:var(--orange);color:#111;font-weight:900;font-size:20px;flex:none}.grow{flex:1}.topic h3{margin:0 0 2px}.locked{opacity:.45}.actions{display:flex;gap:12px;flex-wrap:wrap}
+button{border:1px solid #354456;background:#111820;color:white;border-radius:11px;padding:13px 22px;font-weight:800;font-size:15px;cursor:pointer}.primary{background:var(--orange);color:#101010;border:0}.blue{color:var(--blue)}.rule{padding:13px 0;border-bottom:1px solid #222d39}.rule:last-child{border:0}.badge{display:inline-block;background:#202b38;color:var(--blue);font:700 12px monospace;padding:3px 7px;border-radius:6px;margin-right:8px}.punish{display:inline-block;background:#4a2013;color:#ffad88;font-weight:800;padding:4px 10px;border-radius:999px;margin:4px}
+.cheat{background:#17140f;border-color:#5a3c0b}.cheat h2{color:#ffc43d}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.mini{background:#121212;border:1px solid #4b3510;border-radius:12px;padding:15px}.mini b{display:block;color:#ffc43d;font-size:23px}
+.q{margin-bottom:16px}.q h3{font-size:18px}.option{display:block;border:1px solid var(--line);border-radius:12px;padding:14px;margin:10px 0;cursor:pointer}.option:hover{border-color:#4c6075}.option input{margin-right:12px;accent-color:var(--orange)}.feedback{padding:12px;border-radius:9px;margin-top:10px}.ok{background:#0d3320;color:#45ef92}.bad{background:#3a1518;color:#ff7c84}.hidden{display:none!important}.progress{display:flex;gap:6px;margin:18px 0}.dot{height:10px;flex:1;max-width:28px;border-radius:10px;background:#26313e}.dot.done{background:var(--green)}.dot.now{background:var(--orange)}
+@media(max-width:650px){.wrap{padding:14px 12px 50px}.hero,.card{padding:18px;border-radius:15px}.hero h1{font-size:26px}.topic{align-items:flex-start}.grid{grid-template-columns:1fr 1fr}.actions button{width:100%}.rule{font-size:15px}}
+</style>
+</head>
+<body><main class="wrap">
+<section id="home">
+ <div class="hero"><div class="eyebrow">ТРЕНАЖЁР • МАТРЁШКА RP</div><h1>Подготовка к аттестации администратора</h1><div class="muted">Теория → короткий тест на закрепление. Следующая тема открывается после успешной сдачи предыдущей. Прогресс сохраняется в этом браузере.</div></div>
+ <div id="topics"></div>
+ <div class="actions"><button class="primary" onclick="continueStudy()">Продолжить обучение</button><button class="blue" onclick="resetProgress()">Сбросить прогресс</button></div>
+</section>
+<section id="theory" class="hidden"></section>
+<section id="test" class="hidden"></section>
+</main>
+<script>
+const topics=[
+ {title:"Тема 1. Общие правила серверов",desc:"Базовые правила игрового процесса",rules:[
+ ["4.7","Намеренный слив склада: более 250 единиц без улучшений / более 500 с ними","варн + изъятие оружия"],
+ ["4.25","DM — убийство или тяжкий вред без веской причины","тюрьма 90 минут"],
+ ["4.27","DB — убийство или тяжкий вред наездом","тюрьма 90 минут"],
+ ["4.28–4.29","TK — убийство/урон члену своей фракции","тюрьма 90 минут"],
+ ["4.30","SK — убийство/урон на спавне","тюрьма 90 минут"],
+ ["4.12","Выход из игры во время погони/ареста/RP-ситуации","тюрьма 30 минут"]
+ ],cheat:[["250 / 500","Порог склада без/с улучшениями"],["3+","Порог массового DM/TK"],["90 мин","Базовое наказание за DM/DB/TK/SK"],["30 мин","Выход из RP-ситуации"]]},
+ {title:"Тема 2. Правила и обязанности администрации",desc:"Основные нормы работы администрации",rules:[],cheat:[]},
+ {title:"Тема 3. Требования к кандидату на пост стажёра",desc:"Требования и подготовка к стажировке",rules:[],cheat:[]}
+];
+const questions=[
+ {q:"Сколько единиц склада без улучшений считается допустимым до намеренного слива?",a:["300 единиц","100 единиц","250 единиц","500 единиц"],c:2,e:"Допустимый порог без улучшений — 250 единиц."},
+ {q:"Сколько минут тюрьмы предусмотрено за DB?",a:["120 минут","90 минут","30 минут","60 минут"],c:1,e:"За DB в этой базе тренажёра указано 90 минут."},
+ {q:"Что означает DM?",a:["Урон транспортом","Убийство/тяжкий вред без веской причины","Убийство на спавне","Урон члену своей фракции"],c:1,e:"DM — убийство или тяжкий вред без веской причины."},
+ {q:"Что означает TK?",a:["Урон члену своей фракции","Уход от RP","Убийство на спавне","Обман игроков"],c:0,e:"TK относится к убийству/урону члену своей фракции."},
+ {q:"Какое наказание указано за выход из игры во время погони/ареста/RP-ситуации?",a:["Варн","30 минут тюрьмы","90 минут тюрьмы","Блокировка"],c:1,e:"Указано 30 минут тюрьмы."}
+];
+let progress=JSON.parse(localStorage.getItem("mrp-progress")||'{"unlocked":1,"last":0}');
+function save(){localStorage.setItem("mrp-progress",JSON.stringify(progress))}
+function show(id){["home","theory","test"].forEach(x=>document.getElementById(x).classList.toggle("hidden",x!==id));scrollTo(0,0)}
+function renderHome(){const box=document.getElementById("topics");box.innerHTML=topics.map((t,i)=>`<div class="card topic ${i>=progress.unlocked?'locked':''}"><div class="num">${i<progress.unlocked?i+1:"🔒"}</div><div class="grow"><h3>${t.title}</h3><div class="muted">${t.desc}</div></div>${i<progress.unlocked?'<button onclick="openTheory('+i+')">Продолжить</button>':'<span class="muted">Заблокировано</span>'}</div>`).join("")}
+function openTheory(i){progress.last=i;save();const t=topics[i];let rules=t.rules.length?t.rules.map(r=>`<div class="rule"><span class="badge">${r[0]}</span>${r[1]} <span class="punish">→ ${r[2]}</span></div>`).join(""):'<p class="muted">Раздел подготовлен под наполнение актуальными правилами проекта.</p>';let cheat=t.cheat.length?`<div class="card cheat"><h2>⚡ Шпаргалка: цифры этой темы</h2><div class="grid">${t.cheat.map(x=>`<div class="mini"><b>${x[0]}</b><span class="muted">${x[1]}</span></div>`).join("")}</div></div>`:'';document.getElementById("theory").innerHTML=`<div class="hero"><div class="eyebrow">ТЕОРИЯ</div><h1>${t.title}</h1></div><div class="card"><h2>Игровой процесс и правила</h2>${rules}</div>${cheat}<div class="actions"><button onclick="show('home')">← К списку тем</button><button class="primary" onclick="startTest(${i})">Пройти тест по теме →</button></div>`;show("theory")}
+function startTest(i){if(i!==0||!questions.length){alert("База вопросов для этой темы ещё наполняется.");return}let qs=[...questions].sort(()=>Math.random()-.5);document.getElementById("test").innerHTML=`<div class="hero"><div class="eyebrow">ТЕСТ • ${topics[i].title}</div><h1>Проверка знаний</h1><div class="muted">Ответь на все вопросы. Для зачёта нужно не менее 80%.</div></div><div class="progress">${qs.map((_,j)=>'<i class="dot" id="d'+j+'"></i>').join("")}</div><form id="quiz">${qs.map((x,n)=>`<div class="card q"><div class="blue"><b>Вопрос ${n+1} из ${qs.length}</b></div><h3>${x.q}</h3>${x.a.map((a,j)=>`<label class="option"><input type="radio" name="q${n}" value="${j}"> ${a}</label>`).join("")}<div id="f${n}"></div></div>`).join("")}<div class="actions"><button type="button" onclick="show('home')">← Назад</button><button type="button" class="primary" id="check">Проверить ответы</button></div></form>`;document.getElementById("check").onclick=()=>grade(qs,i);show("test")}
+function grade(qs,i){let score=0;qs.forEach((x,n)=>{let el=document.querySelector('input[name=q'+n+']:checked'),v=el?+el.value:-1,ok=v===x.c;if(ok)score++;document.getElementById("d"+n).classList.add(ok?"done":"now");document.getElementById("f"+n).innerHTML=`<div class="feedback ${ok?'ok':'bad'}">${ok?'✓ Верно.':'✕ Неверно.'} ${x.e}</div>`});let pct=Math.round(score/qs.length*100);if(pct>=80){progress.unlocked=Math.max(progress.unlocked,i+2);save()}document.getElementById("check").outerHTML=`<button type="button" class="primary" onclick="renderHome();show('home')">Результат: ${score}/${qs.length} (${pct}%) • ${pct>=80?'Сдано ✓':'Повторить'}</button>`}
+function continueStudy(){openTheory(Math.min(progress.last,progress.unlocked-1))}
+function resetProgress(){if(confirm("Сбросить весь сохранённый прогресс?")){progress={unlocked:1,last:0};save();renderHome()}}
+renderHome();
+</script></body></html>
