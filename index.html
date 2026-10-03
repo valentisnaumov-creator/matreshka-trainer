@@ -307,6 +307,22 @@ html{height:-webkit-fill-available}body{min-height:100dvh;min-height:-webkit-fil
  .mobileNav button small{font-size:17px!important;font-weight:850!important}
  .mobileNav button>span{font-size:23px!important}
 }
+</style><style id="helpatt-nav-final-v13">
+/* balanced bottom nav; target the actual <small> labels */
+@media(min-width:801px){
+ nav.mobileNav{width:min(720px,calc(100% - 32px))!important;height:72px!important;padding:5px 8px!important;border-radius:22px!important;bottom:12px!important}
+ nav.mobileNav button{min-height:60px!important;padding:5px 4px!important;gap:4px!important;border-radius:15px!important}
+ nav.mobileNav button small{display:block!important;font-size:15px!important;line-height:16px!important;font-weight:800!important}
+ nav.mobileNav button>span{font-size:18px!important;line-height:18px!important}
+ .mobileMore{width:min(720px,calc(100% - 32px))!important;bottom:92px!important}
+ .appBack{bottom:94px!important}.wrap{padding-bottom:112px!important}
+}
+@media(max-width:800px){
+ nav.mobileNav{height:68px!important;padding:5px!important}
+ nav.mobileNav button{min-height:56px!important;gap:3px!important}
+ nav.mobileNav button small{display:block!important;font-size:12px!important;line-height:13px!important;font-weight:800!important}
+ nav.mobileNav button>span{font-size:18px!important;line-height:18px!important}
+}
 </style></head>
 <body><header class="topbar"><div class="topbarin">
 <div class="brandWrap" onclick="renderHome();show('home')" style="cursor:pointer"><div class="logoMark">M</div><div class="brandText">HELPATT<small>MATRESHKA RP</small></div></div>
