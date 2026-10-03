@@ -113,6 +113,17 @@ button{font-weight:750}.primary{color:#090c10}.actions{align-items:center}
  .tabs{left:6px!important;right:6px!important;bottom:6px!important}.moremenu{left:6px!important;right:6px!important;bottom:76px!important}
  .brandText small{display:none}
 }
+</style><style id="mobile-ui-v3">
+@media(max-width:700px){
+ .topbar{position:sticky!important;top:0!important;z-index:80!important;background:#0c1117f5!important}
+ .topbarin{display:flex!important;align-items:center!important;flex-wrap:nowrap!important;padding:8px 12px!important;min-height:54px!important}
+ .brandWrap{display:flex!important;flex:1 1 auto!important;min-width:0!important;margin-right:auto!important}
+ .accountBox{display:block!important;flex:0 0 auto!important;grid-column:auto!important}
+ .accountBox button{display:block!important;width:auto!important;min-width:66px!important;max-width:112px!important;padding:9px 12px!important}
+ .settings{display:none!important}
+ .tabs{position:fixed!important;left:8px!important;right:8px!important;bottom:max(8px,env(safe-area-inset-bottom))!important;top:auto!important;z-index:120!important;transform:none!important;margin:0!important}
+ main.wrap{padding-top:12px!important}
+}
 </style></head>
 <body><header class="topbar"><div class="topbarin">
 <div class="brandWrap" onclick="renderHome();show('home')" style="cursor:pointer"><div class="logoMark">M</div><div class="brandText">HELPATT<small>MATRESHKA RP</small></div></div>
