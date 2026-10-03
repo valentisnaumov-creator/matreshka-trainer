@@ -151,6 +151,20 @@ button{font-weight:750}.primary{color:#090c10}.actions{align-items:center}
  .mobileMore.open{display:block}.mobileMoreHead{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}.mobileMoreHead b{font-size:18px}.mobileMoreHead button{padding:7px 10px;border:0;background:rgba(255,255,255,.06)}
  .mobileMoreGrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.mobileMoreGrid button{min-width:0;padding:14px 10px;display:flex;align-items:center;gap:9px;text-align:left;background:#111820}.mobileMoreGrid button span{font-size:12px}
 }
+</style><style id="mobile-polish-v4">
+@media(max-width:800px){
+ .hero{min-height:auto!important;padding:20px!important;border-radius:20px!important}.hero h1{font-size:28px!important;line-height:1.08!important}.hero .muted{font-size:15px!important;line-height:1.55!important}
+ #home>.hero>div:first-child{gap:11px!important;margin-bottom:12px!important}#home>.hero .logoMark{width:46px!important;height:46px!important;font-size:27px!important}
+ .daily{padding:17px!important;gap:12px!important}.daily>div:first-child{font-size:28px!important}.daily h3{font-size:18px!important}.daily .muted{font-size:13px;line-height:1.45}
+ .stats{grid-template-columns:repeat(3,1fr)!important;gap:8px!important}.stat{min-height:88px!important;padding:12px!important}.stat b{font-size:25px!important}.stat span{font-size:11px!important}
+ .dashHero{padding:20px!important;border-radius:20px!important}.dashHero h1{font-size:27px!important}.dashGrid{grid-template-columns:1fr!important}
+ .sectionHead{align-items:flex-end!important}.sectionHead h2{font-size:22px!important}.sectionHead>span{font-size:11px!important}
+ .topic{padding:15px!important;border-radius:18px!important}.topic .num{width:42px!important;height:42px!important;border-radius:13px!important;font-size:17px!important}.topic h3{font-size:17px!important;line-height:1.2}.topic .muted{font-size:12px!important}
+ .lessonCard{padding:18px!important;border-radius:18px!important}.lessonText{font-size:17px!important;line-height:1.55!important}.learnHero .lessonNo{font-size:11px}
+ .modegrid{grid-template-columns:1fr 1fr!important;gap:9px!important}.modecard{min-height:125px!important;padding:16px!important;border-radius:18px!important}.modecard h3{font-size:15px!important}.modeicon{font-size:24px!important}
+ .appBack{bottom:88px!important;left:12px!important;width:46px!important;height:46px!important;padding:0!important;border-radius:50%!important;z-index:290!important}.appBack span{display:none!important}
+ .mobileNav button.active{background:color-mix(in srgb,var(--orange) 14%,transparent)!important;color:white!important}
+}
 </style></head>
 <body><header class="topbar"><div class="topbarin">
 <div class="brandWrap" onclick="renderHome();show('home')" style="cursor:pointer"><div class="logoMark">M</div><div class="brandText">HELPATT<small>MATRESHKA RP</small></div></div>
@@ -185,7 +199,7 @@ button{font-weight:750}.primary{color:#090c10}.actions{align-items:center}
 <button onclick="closeMobileMore();openAchievements()">🏆<span>Достижения</span></button>
 </div></div>
 <script>
-function toggleMobileMore(){document.getElementById("mobileMore")?.classList.toggle("open")}function closeMobileMore(){document.getElementById("mobileMore")?.classList.remove("open")}
+function toggleMobileMore(){document.getElementById("mobileMore")?.classList.toggle("open")}function closeMobileMore(){document.getElementById("mobileMore")?.classList.remove("open")}function syncMobileNav(){let bs=document.querySelectorAll(".mobileNav button");bs.forEach(b=>b.classList.remove("active"));let n=currentView==="home"?0:currentView==="library"?1:currentView==="test"?2:-1;if(n>=0&&bs[n])bs[n].classList.add("active")}
 let cloud=null,currentUser=null,currentProfile=null;
 function cloudReady(){return !!(window.HELPATT_SUPABASE_URL&&window.HELPATT_SUPABASE_PUBLISHABLE_KEY&&window.supabase)}
 async function initCloud(){if(!cloudReady())return;cloud=window.supabase.createClient(window.HELPATT_SUPABASE_URL,window.HELPATT_SUPABASE_PUBLISHABLE_KEY);let {data}=await cloud.auth.getSession();currentUser=data.session?.user||null;if(currentUser)await loadProfile();cloud.auth.onAuthStateChange(async(_,session)=>{currentUser=session?.user||null;if(currentUser)await loadProfile();else currentProfile=null;renderAccountButton()});renderAccountButton()}
@@ -214,8 +228,8 @@ function touchLearn(){let d=new Date().toISOString().slice(0,10);if(learnStats.t
 function save(){localStorage.setItem("mrp-progress",JSON.stringify(progress))}
 let appHistory=[],currentView="home",navigatingBack=false;
 function captureView(){let el=document.getElementById(currentView);return{view:currentView,html:el?el.innerHTML:"",scroll:window.scrollY}}
-function show(id){if(id!==currentView&&!navigatingBack)appHistory.push(captureView());currentView=id;navigatingBack=false;["home","theory","test","library","extra"].forEach(x=>document.getElementById(x).classList.toggle("hidden",x!==id));renderBackButton();scrollTo(0,0)}
-function goBack(){let state=appHistory.pop();if(!state){renderHome();currentView="home";["home","theory","test","library","extra"].forEach(x=>document.getElementById(x).classList.toggle("hidden",x!=="home"));renderBackButton();return}let el=document.getElementById(state.view);if(el&&state.html)el.innerHTML=state.html;currentView=state.view;navigatingBack=true;["home","theory","test","library","extra"].forEach(x=>document.getElementById(x).classList.toggle("hidden",x!==state.view));navigatingBack=false;renderBackButton();requestAnimationFrame(()=>scrollTo(0,state.scroll||0))}
+function show(id){if(id!==currentView&&!navigatingBack)appHistory.push(captureView());currentView=id;navigatingBack=false;["home","theory","test","library","extra"].forEach(x=>document.getElementById(x).classList.toggle("hidden",x!==id));renderBackButton();syncMobileNav();closeMobileMore();scrollTo(0,0)}
+function goBack(){let state=appHistory.pop();if(!state){renderHome();currentView="home";["home","theory","test","library","extra"].forEach(x=>document.getElementById(x).classList.toggle("hidden",x!=="home"));renderBackButton();return}let el=document.getElementById(state.view);if(el&&state.html)el.innerHTML=state.html;currentView=state.view;navigatingBack=true;["home","theory","test","library","extra"].forEach(x=>document.getElementById(x).classList.toggle("hidden",x!==state.view));navigatingBack=false;renderBackButton();syncMobileNav();requestAnimationFrame(()=>scrollTo(0,state.scroll||0))}
 function renderBackButton(){let b=document.getElementById("appBack");if(!b){b=document.createElement("button");b.id="appBack";b.className="appBack";b.innerHTML="← <span>Назад</span>";b.onclick=goBack;document.body.appendChild(b)}b.classList.toggle("visible",currentView!=="home"||appHistory.length>0)}
 
 function shuffle(a){a=[...a];for(let i=a.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
