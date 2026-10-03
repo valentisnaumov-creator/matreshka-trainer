@@ -256,7 +256,36 @@ html{height:-webkit-fill-available}body{min-height:100dvh;min-height:-webkit-fil
 @supports(padding:max(0px)){.topbarin{padding-left:max(14px,env(safe-area-inset-left));padding-right:max(14px,env(safe-area-inset-right))}}
 @media(max-width:800px){body{padding-bottom:env(safe-area-inset-bottom)}.mobileNav{bottom:max(8px,env(safe-area-inset-bottom))!important}.mobileMore{bottom:calc(82px + env(safe-area-inset-bottom))!important}.appBack{bottom:calc(84px + env(safe-area-inset-bottom))!important}.quizSubmit{bottom:calc(82px + env(safe-area-inset-bottom))!important}input,select,textarea{font-size:16px!important}.mobileMore{-webkit-overflow-scrolling:touch}.wrap{padding-bottom:calc(108px + env(safe-area-inset-bottom))!important}}
 .accessHint{padding:14px 16px;border:1px solid var(--glass-line);border-radius:17px;background:rgba(255,255,255,.03)}
-</style><style id="helpatt-access-live-v8">.adminUserList{display:grid;gap:10px}.adminUser{display:grid;grid-template-columns:48px 1fr auto;gap:13px;align-items:center;padding:15px;border:1px solid var(--glass-line);border-radius:19px;background:rgba(255,255,255,.03)}.adminAvatar{width:48px;height:48px;border-radius:15px;display:grid;place-items:center;background:color-mix(in srgb,var(--orange) 12%,transparent);color:var(--orange);font-weight:900}.adminUser h3{margin:0 0 3px}.adminRole{display:inline-flex;margin-top:5px;padding:4px 8px;border:1px solid var(--glass-line);border-radius:999px;font-size:10px;font-weight:900}.adminRole.creator{color:var(--orange)}@media(max-width:650px){.adminUser{grid-template-columns:42px 1fr}.adminUser>button{grid-column:1/-1;width:100%}}</style></head>
+</style><style id="helpatt-access-live-v8">.adminUserList{display:grid;gap:10px}.adminUser{display:grid;grid-template-columns:48px 1fr auto;gap:13px;align-items:center;padding:15px;border:1px solid var(--glass-line);border-radius:19px;background:rgba(255,255,255,.03)}.adminAvatar{width:48px;height:48px;border-radius:15px;display:grid;place-items:center;background:color-mix(in srgb,var(--orange) 12%,transparent);color:var(--orange);font-weight:900}.adminUser h3{margin:0 0 3px}.adminRole{display:inline-flex;margin-top:5px;padding:4px 8px;border:1px solid var(--glass-line);border-radius:999px;font-size:10px;font-weight:900}.adminRole.creator{color:var(--orange)}@media(max-width:650px){.adminUser{grid-template-columns:42px 1fr}.adminUser>button{grid-column:1/-1;width:100%}}</style><style id="helpatt-unified-ui-v9">
+/* Unified HELPATT shell: desktop follows the same compact app language as mobile */
+@media(min-width:801px){
+ body{background-attachment:scroll}
+ .topbar{top:12px;margin:0 auto;width:min(1180px,calc(100% - 28px));border:1px solid var(--glass-line);border-radius:22px}
+ .topbarin{min-height:66px;padding:8px 12px;gap:12px}
+ .brandWrap{flex:0 0 auto}.brand{font-size:18px}.brandSub{font-size:9px}
+ .tabs{display:none!important}
+ .settings{display:none!important}
+ .accountBox{margin-left:auto}
+ .accountBox button{min-height:44px;border-radius:14px;padding:0 16px}
+ .wrap{max-width:1180px;padding:26px 18px 118px}
+ .hero,.dashHero{border-radius:26px;padding:26px}
+ .hero h1,.dashHero h1{font-size:clamp(27px,3vw,42px);line-height:1.05}
+ .stats,.creatorStats{gap:12px}
+ .card,.lessonCard,.modecard,.forumTopic,.attestationIntro,.readinessCard,.levelCard{border-radius:20px}
+ .mobileNav{display:grid!important;position:fixed;z-index:80;left:50%!important;right:auto!important;bottom:16px!important;transform:translateX(-50%);width:min(650px,calc(100% - 32px));height:70px;grid-template-columns:repeat(5,1fr);padding:7px;border:1px solid var(--glass-line);border-radius:23px}
+ .mobileNav button{min-width:0;border:0;background:transparent;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;font-size:11px;border-radius:16px}
+ .mobileMore{position:fixed!important;z-index:90;left:50%!important;right:auto!important;bottom:96px!important;transform:translateX(-50%);width:min(650px,calc(100% - 32px));max-height:60vh;overflow:auto;border-radius:22px;padding:10px}
+ .appBack{bottom:98px!important}
+ .homeQuick{grid-template-columns:repeat(3,1fr);gap:12px}
+ .quickTile{min-height:116px;border-radius:20px}
+ .modegrid{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+ .pageHero{border-radius:24px}
+ .creatorRulesLayout{gap:14px}
+}
+@media(min-width:801px) and (max-width:1050px){
+ .homeQuick,.modegrid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+</style></head>
 <body><header class="topbar"><div class="topbarin">
 <div class="brandWrap" onclick="renderHome();show('home')" style="cursor:pointer"><div class="logoMark">M</div><div class="brandText">HELPATT<small>MATRESHKA RP</small></div></div>
 <nav class="tabs"><button onclick="renderHome();show('home')">Обучение</button><button onclick="openLibrary(false)">Правила</button><button onclick="openTests()">Тесты</button><button onclick="startExam()">Экзамен</button><button onclick="openDashboard()">Прогресс</button>
