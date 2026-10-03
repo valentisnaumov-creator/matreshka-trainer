@@ -85,6 +85,34 @@ button{font-weight:750}.primary{color:#090c10}.actions{align-items:center}
 .scenarioDeck .caseCard:before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--accent)}
 .scenarioMeta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}.scenarioMeta span{font-size:11px;font-weight:800;padding:5px 8px;border-radius:999px;background:rgba(255,255,255,.06)}
 @media(max-width:520px){.scenarioLabel{font-size:11px}.scenarioLabel span:last-child{white-space:normal}.caseQuestions{gap:6px;flex-wrap:wrap}}
+</style><style id="mobile-ui-v2">
+@media(max-width:700px){
+ body{padding-bottom:92px}
+ .wrap{padding:12px 12px 110px}
+ .topbar{position:sticky;top:0;z-index:60}
+ .topbarin{padding:9px 12px;display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:7px;flex-wrap:nowrap}
+ .brandWrap{min-width:0;margin:0}.brandText{font-size:16px}.brandText small{font-size:7px;letter-spacing:.2em}.logoMark{width:36px;height:36px;font-size:21px;border-radius:10px}
+ .accountBox{grid-column:2}.accountBox button{width:auto!important;min-width:64px;max-width:118px;padding:9px 11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:13px}
+ .settings{grid-column:3}.settings input{width:34px;height:34px}
+ .tabs{position:fixed!important;left:10px!important;right:10px!important;bottom:10px!important;top:auto!important;z-index:100!important;height:64px;padding:6px;display:grid!important;grid-template-columns:repeat(6,1fr);gap:2px;background:rgba(12,17,23,.97);border:1px solid var(--line);border-radius:18px;box-shadow:0 14px 45px #000b;backdrop-filter:blur(18px)}
+ .tabs>button,.tabs>.more>button{width:100%!important;height:50px;padding:4px 2px!important;border:0!important;border-radius:12px!important;font-size:0!important;background:transparent!important;display:flex;align-items:center;justify-content:center}
+ .tabs>button:before,.tabs>.more>button:before{font-size:20px;line-height:1}
+ .tabs>button:nth-child(1):before{content:"🏠"}.tabs>button:nth-child(2):before{content:"📚"}.tabs>button:nth-child(3):before{content:"📝"}.tabs>button:nth-child(4):before{content:"🎓"}.tabs>button:nth-child(5):before{content:"📊"}.tabs>.more>button:before{content:"•••";font-size:18px;font-weight:900}
+ .more{position:static}
+ .moremenu{position:fixed!important;left:10px!important;right:10px!important;bottom:82px!important;top:auto!important;max-height:58vh;overflow:auto;min-width:0;padding:10px;border-radius:18px;grid-template-columns:1fr 1fr;gap:6px!important;box-shadow:0 -15px 45px #000c;z-index:110}
+ .moremenu button{width:100%!important;padding:12px 10px!important;font-size:13px!important}
+ .hero{margin-top:4px}.hero h1{font-size:25px;line-height:1.08}
+ .dashHero{padding:20px!important;display:block!important}.dashHero h1{font-size:27px!important}.levelOrb{margin:20px auto 0!important}
+ .topic{display:grid!important;grid-template-columns:auto minmax(0,1fr);gap:12px!important}.topic .grow{min-width:0}.topic>button{grid-column:1/-1;width:100%}
+ .daily{display:grid!important;grid-template-columns:auto 1fr}.daily .grow{min-width:0}
+ .situation{padding:16px!important}.situation:before{display:none}.scenarioDeck .caseCard h2,.scenarioDeck .caseCard h3{font-size:18px;line-height:1.3}
+ .caseQuestions{display:flex!important;flex-wrap:wrap}.caseQuestions span{font-size:11px}
+}
+@media(max-width:380px){
+ .topbarin{grid-template-columns:minmax(0,1fr) auto}.settings{display:none}.accountBox{grid-column:2}
+ .tabs{left:6px!important;right:6px!important;bottom:6px!important}.moremenu{left:6px!important;right:6px!important;bottom:76px!important}
+ .brandText small{display:none}
+}
 </style></head>
 <body><header class="topbar"><div class="topbarin">
 <div class="brandWrap" onclick="renderHome();show('home')" style="cursor:pointer"><div class="logoMark">M</div><div class="brandText">HELPATT<small>MATRESHKA RP</small></div></div>
