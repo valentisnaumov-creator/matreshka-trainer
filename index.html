@@ -336,6 +336,18 @@ nav.mobileNav button>span{font-size:18px!important;line-height:18px!important}
  .mobileMore{width:min(700px,calc(100% - 32px))!important;bottom:90px!important}
  .appBack{bottom:92px!important}.wrap{padding-bottom:108px!important}
 }
+</style><style id="helpatt-nav-reset-v15">
+nav.mobileNav{box-sizing:border-box!important}
+nav.mobileNav button{box-sizing:border-box!important}
+nav.mobileNav .navText{display:block!important;visibility:visible!important;opacity:1!important;margin:0!important;padding:0!important;font:800 12px/14px Arial,sans-serif!important;letter-spacing:0!important;text-transform:none!important;white-space:nowrap!important;color:inherit!important}
+@media(min-width:801px){
+ nav.mobileNav{width:680px!important;max-width:calc(100vw - 32px)!important;height:68px!important;padding:4px 6px!important;bottom:12px!important;border-radius:21px!important}
+ nav.mobileNav button{height:58px!important;min-height:0!important;padding:3px!important;gap:3px!important}
+ nav.mobileNav .navText{font:800 16px/17px Arial,sans-serif!important}
+ nav.mobileNav button>span:first-child{font:800 18px/18px Arial,sans-serif!important}
+ .mobileMore{width:680px!important;max-width:calc(100vw - 32px)!important;bottom:88px!important}
+ .appBack{bottom:90px!important}.wrap{padding-bottom:104px!important}
+}
 </style></head>
 <body><header class="topbar"><div class="topbarin">
 <div class="brandWrap" onclick="renderHome();show('home')" style="cursor:pointer"><div class="logoMark">M</div><div class="brandText">HELPATT<small>MATRESHKA RP</small></div></div>
@@ -350,12 +362,12 @@ nav.mobileNav button>span{font-size:18px!important;line-height:18px!important}
 </section>
 <section id="theory" class="hidden"></section>
 <section id="test" class="hidden"></section><section id="library" class="hidden"></section><section id="extra" class="hidden"></section>
-</main><nav class="mobileNav" aria-label="Мобильная навигация">
-<button onclick="renderHome();show('home')"><span>⌂</span><strong class="navLabel">Главная</strong></button>
-<button onclick="openLibrary(false)"><span>▤</span><strong class="navLabel">Правила</strong></button>
-<button onclick="openTests()"><span>✓</span><strong class="navLabel">Тесты</strong></button>
-<button onclick="openSituations()"><span>◈</span><strong class="navLabel">Ситуации</strong></button>
-<button onclick="toggleMobileMore()"><span>•••</span><strong class="navLabel">Ещё</strong></button>
+</main><nav class="mobileNav" aria-label="Основная навигация">
+<button onclick="renderHome();show('home')"><span>⌂</span><span class="navText">Главная</span></button>
+<button onclick="openLibrary(false)"><span>▤</span><span class="navText">Правила</span></button>
+<button onclick="openTests()"><span>✓</span><span class="navText">Тесты</span></button>
+<button onclick="openSituations()"><span>◈</span><span class="navText">Ситуации</span></button>
+<button onclick="toggleMobileMore()"><span>•••</span><span class="navText">Ещё</span></button>
 </nav>
 <div id="mobileMore" class="mobileMore">
 <div class="mobileMoreHead"><b>Ещё</b><button onclick="toggleMobileMore()">✕</button></div>
