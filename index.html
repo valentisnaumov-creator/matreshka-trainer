@@ -226,6 +226,31 @@ body[data-appearance="solid"] .forumTopic,body[data-appearance="solid"] .attesta
 .profileModern{padding:26px!important;grid-template-columns:76px 1fr auto!important}.profileAvatar{width:76px!important;height:76px!important;border-radius:24px!important;background:linear-gradient(135deg,var(--orange),color-mix(in srgb,var(--orange) 55%,#6c63ff))!important;box-shadow:0 12px 34px color-mix(in srgb,var(--orange) 20%,transparent);font-size:30px!important}.rolePill{display:inline-flex!important;margin-top:9px!important;border-radius:999px!important;background:color-mix(in srgb,var(--orange) 10%,rgba(255,255,255,.03))!important;border:1px solid color-mix(in srgb,var(--orange) 18%,transparent);color:var(--orange)!important}.profileStats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}.profileStat{padding:14px;border:1px solid var(--glass-line);border-radius:17px;background:rgba(255,255,255,.03)}.profileStat b{display:block;font-size:20px}.profileStat span{font-size:11px;color:var(--muted)}
 .appBack{backdrop-filter:blur(18px)!important;-webkit-backdrop-filter:blur(18px)!important;background:rgba(12,18,27,.68)!important;border:1px solid rgba(255,255,255,.11)!important;box-shadow:0 12px 35px rgba(0,0,0,.28)!important}
 @media(max-width:800px){.quizHero{min-height:130px!important;padding:20px!important}.quizHero h1{font-size:25px}.quizCount{padding:8px 10px}.q{padding:18px!important}.q h3{font-size:17px}.option{min-height:50px}.quizSubmit{bottom:88px}.profileModern{grid-template-columns:62px 1fr!important;padding:19px!important}.profileAvatar{width:62px!important;height:62px!important;border-radius:20px!important}.profileAction{grid-column:1/-1}.profileStats{grid-template-columns:repeat(3,1fr)}}
+</style><style id="helpatt-mobile-performance-v6">
+/* Mobile performance: preserve the glass look without stacking expensive GPU blur layers. */
+@media(max-width:800px){
+ body{background-attachment:scroll!important}
+ body[data-appearance="glass"] .hero,body[data-appearance="glass"] .card,body[data-appearance="glass"] .lessonCard,body[data-appearance="glass"] .modecard,body[data-appearance="glass"] .stat,body[data-appearance="glass"] .readRule,body[data-appearance="glass"] .settingsCard,body[data-appearance="glass"] .forumTopic,body[data-appearance="glass"] .attestationIntro,body[data-appearance="glass"] .readinessCard,body[data-appearance="glass"] .levelCard{backdrop-filter:none!important;-webkit-backdrop-filter:none!important;background:linear-gradient(145deg,rgba(22,31,44,.88),rgba(12,18,27,.82))!important;box-shadow:inset 0 1px rgba(255,255,255,.07),0 9px 24px rgba(0,0,0,.16)!important}
+ body[data-appearance="glass"] .topbar,body[data-appearance="glass"] .mobileNav,body[data-appearance="glass"] .mobileMore{backdrop-filter:blur(12px)!important;-webkit-backdrop-filter:blur(12px)!important}
+ .card:hover,.lessonCard:hover,.forumTopic:hover,.topicProgress:hover,.quickTile:hover{transform:none!important}
+ .viewEnter{animation-duration:.16s}
+ .wrap{width:100%;padding-left:12px!important;padding-right:12px!important;padding-bottom:105px!important}
+ .dashHero{padding:20px!important;border-radius:22px!important}.dashHero h1{font-size:27px!important;line-height:1.08!important}.dashHero p{font-size:13px!important}.levelOrb{width:108px!important;height:108px!important}
+ .dashGrid{gap:9px!important}.dashGrid .card{padding:15px!important}.dashGrid h2{font-size:18px!important}
+ .topic{padding:14px!important;gap:11px!important;border-radius:19px!important}.topic .num{width:38px!important;height:38px!important;min-width:38px!important}.topic h3{font-size:15px!important}.topic .muted{font-size:11px!important}.topic>button{padding:9px 10px!important;font-size:11px!important}
+ .mobileNav{left:8px!important;right:8px!important;bottom:8px!important;width:auto!important;height:68px!important;border-radius:21px!important;padding:5px!important}.mobileNav button{min-width:0!important;padding:5px 2px!important;font-size:10px!important}.mobileNav button>span:first-child{font-size:19px!important}
+ .mobileMore{left:8px!important;right:8px!important;bottom:82px!important;max-height:55vh;overflow:auto;overscroll-behavior:contain}
+ .appBack{bottom:84px!important;left:12px!important}
+ .q{content-visibility:auto;contain-intrinsic-size:360px}.forumTopic{content-visibility:auto;contain-intrinsic-size:110px}.topic{content-visibility:auto;contain-intrinsic-size:110px}.libRule{content-visibility:auto;contain-intrinsic-size:80px}
+ .quizSubmit{bottom:82px!important}
+}
+@media(max-width:430px){
+ .dashHero{display:block!important}.levelOrb{margin:18px auto 0!important}.dashHero .actions{display:grid!important;grid-template-columns:1fr 1fr!important}.dashHero .actions button{width:100%!important}
+ .homeQuick{gap:8px!important}.quickTile{border-radius:18px!important;min-height:104px!important}.quickTile b{font-size:15px!important}
+ .profileStats{gap:6px!important}.profileStat{padding:10px 7px!important}.profileStat b{font-size:16px!important}.profileStat span{font-size:9px!important}
+ .pageHero h1,.quizHero h1{font-size:24px!important}
+}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
 </style></head>
 <body><header class="topbar"><div class="topbarin">
 <div class="brandWrap" onclick="renderHome();show('home')" style="cursor:pointer"><div class="logoMark">M</div><div class="brandText">HELPATT<small>MATRESHKA RP</small></div></div>
@@ -289,8 +314,8 @@ function touchLearn(){let d=new Date().toISOString().slice(0,10);if(learnStats.t
 function save(){localStorage.setItem("mrp-progress",JSON.stringify(progress))}
 let appHistory=[],currentView="home",navigatingBack=false;
 function captureView(){let el=document.getElementById(currentView);return{view:currentView,html:el?el.innerHTML:"",scroll:window.scrollY}}
-function show(id){if(id!==currentView&&!navigatingBack)appHistory.push(captureView());currentView=id;navigatingBack=false;["home","theory","test","library","extra"].forEach(x=>{let el=document.getElementById(x);el.classList.toggle("hidden",x!==id);if(x===id){el.classList.remove("viewEnter");void el.offsetWidth;el.classList.add("viewEnter")}});renderBackButton();syncMobileNav();closeMobileMore();scrollTo(0,0)}
-function goBack(){let state=appHistory.pop();if(!state){renderHome();currentView="home";["home","theory","test","library","extra"].forEach(x=>document.getElementById(x).classList.toggle("hidden",x!=="home"));renderBackButton();return}let el=document.getElementById(state.view);if(el&&state.html)el.innerHTML=state.html;currentView=state.view;navigatingBack=true;["home","theory","test","library","extra"].forEach(x=>document.getElementById(x).classList.toggle("hidden",x!==state.view));navigatingBack=false;renderBackButton();syncMobileNav();requestAnimationFrame(()=>scrollTo(0,state.scroll||0))}
+function show(id){if(id!==currentView&&!navigatingBack)appHistory.push(captureView());currentView=id;navigatingBack=false;let reduce=matchMedia("(prefers-reduced-motion: reduce)").matches,mobile=innerWidth<=800;["home","theory","test","library","extra"].forEach(x=>{let el=document.getElementById(x),active=x===id;el.classList.toggle("hidden",!active);if(active){el.classList.remove("viewEnter");if(!reduce&&!mobile){void el.offsetWidth;el.classList.add("viewEnter")}}});renderBackButton();syncMobileNav();closeMobileMore();scrollTo(0,0)}
+function goBack(){let state=appHistory.pop();if(!state){renderHome();currentView="home";["home","theory","test","library","extra"].forEach(x=>document.getElementById(x).classList.toggle("hidden",x!=="home"));renderBackButton();syncMobileNav();return}let el=document.getElementById(state.view);if(el&&state.html)el.innerHTML=state.html;currentView=state.view;navigatingBack=true;["home","theory","test","library","extra"].forEach(x=>document.getElementById(x).classList.toggle("hidden",x!==state.view));navigatingBack=false;renderBackButton();syncMobileNav();requestAnimationFrame(()=>scrollTo(0,state.scroll||0))}
 function renderBackButton(){let b=document.getElementById("appBack");if(!b){b=document.createElement("button");b.id="appBack";b.className="appBack";b.innerHTML="← <span>Назад</span>";b.onclick=goBack;document.body.appendChild(b)}b.classList.toggle("visible",currentView!=="home"||appHistory.length>0)}
 
 function shuffle(a){a=[...a];for(let i=a.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
