@@ -40,3 +40,30 @@ grant select on public.creator_attempts to authenticated;
 
 -- IMPORTANT: after registering your own account, run ONCE in Supabase SQL editor:
 -- update public.profiles set role='creator' where id=(select id from auth.users where email='YOUR_EMAIL' limit 1);
+
+
+-- HELPATT Creator role management
+create or replace function public.creator_list_users()
+returns table(id uuid, display_name text, role text, email text)
+language sql stable security definer set search_path=''
+as $$
+ select p.id,p.display_name,p.role,u.email::text
+ from public.profiles p join auth.users u on u.id=p.id
+ where public.is_creator()
+ order by p.created_at desc;
+$$;
+
+create or replace function public.creator_set_role(target_user uuid,new_role text)
+returns void language plpgsql security definer set search_path=''
+as $$
+begin
+ if not public.is_creator() then raise exception 'Access denied'; end if;
+ if new_role not in ('student','creator') then raise exception 'Invalid role'; end if;
+ if target_user=(select auth.uid()) then raise exception 'You cannot change your own role'; end if;
+ update public.profiles set role=new_role where id=target_user;
+end;
+$$;
+revoke all on function public.creator_list_users() from public;
+revoke all on function public.creator_set_role(uuid,text) from public;
+grant execute on function public.creator_list_users() to authenticated;
+grant execute on function public.creator_set_role(uuid,text) to authenticated;
