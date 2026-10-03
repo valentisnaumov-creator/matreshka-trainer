@@ -299,6 +299,14 @@ html{height:-webkit-fill-available}body{min-height:100dvh;min-height:-webkit-fil
 @media(max-width:800px){
  .mobileNav button{font-size:13px!important;line-height:1.05!important}
 }
+</style><style id="helpatt-nav-small-fix-v12">
+/* labels are <small>, so size them directly instead of relying on button inheritance */
+.mobileNav button small{font-size:13px!important;font-weight:800!important;line-height:1.15!important;color:inherit!important}
+.mobileNav button>span{font-size:21px!important;line-height:1!important}
+@media(min-width:801px){
+ .mobileNav button small{font-size:17px!important;font-weight:850!important}
+ .mobileNav button>span{font-size:23px!important}
+}
 </style></head>
 <body><header class="topbar"><div class="topbarin">
 <div class="brandWrap" onclick="renderHome();show('home')" style="cursor:pointer"><div class="logoMark">M</div><div class="brandText">HELPATT<small>MATRESHKA RP</small></div></div>
